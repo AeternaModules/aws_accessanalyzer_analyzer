@@ -12,7 +12,7 @@ output "accessanalyzer_analyzers_arn" {
 }
 output "accessanalyzer_analyzers_configuration" {
   description = "Map of configuration values across all accessanalyzer_analyzers, keyed the same as var.accessanalyzer_analyzers"
-  value       = { for k, v in aws_accessanalyzer_analyzer.accessanalyzer_analyzers : k => v.configuration if v.configuration != null && length(v.configuration) > 0 }
+  value       = { for k, v in aws_accessanalyzer_analyzer.accessanalyzer_analyzers : k => one(v.configuration) if v.configuration != null && length(v.configuration) > 0 }
 }
 output "accessanalyzer_analyzers_region" {
   description = "Map of region values across all accessanalyzer_analyzers, keyed the same as var.accessanalyzer_analyzers"
